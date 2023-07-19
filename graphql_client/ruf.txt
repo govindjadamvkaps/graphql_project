@@ -1,0 +1,27 @@
+ const fetchData = async () => {
+    try {
+      const resp = await axios.post(`http://localhost:4000/`, {
+        query: `
+        query	findquotes{
+          quotes{
+             name
+            by{     	
+              _id
+              firstName
+              lastName
+            }
+            
+          }
+        } 
+          `,
+          variables:{
+            userid:"64abd692e0747bdd3c0161b6"
+          }
+      });
+      console.log("aassddff", resp.data.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);

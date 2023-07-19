@@ -1,0 +1,142 @@
+---------------
+
+query getAllUser{
+  users {
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+
+-------------
+
+query getAllQuotes{
+  quotes {
+    name
+    by
+  }
+}
+
+-------------
+query getUserById{
+  user(_id:"101"){
+    _id 
+    firstName 
+    lastName 
+    email 
+    password 
+    quotes{
+      by 
+      name 
+    }
+  }
+}
+
+
+-------------------------------
+query getQuotesById{
+ iquotes(by:"101"){
+  name
+  by
+} 
+}
+
+-------------------------------------
+query getUserById($userid:ID!){
+  user(_id:$userid){
+    _id firstName lastName email   quotes{
+      by name 
+    }
+  }
+}
+
+in qurey veriable
+
+{
+"userid": "103"
+}
+
+
+
+----------------------------------
+
+query getQuotesById($quotesId:ID!){
+ iquotes(by:$quotesId){
+  name
+  by
+} 
+}
+
+
+{
+  "quotesId": "102"
+}
+
+
+---------------------------------------
+mutation createUser($userNew:UserInput!){
+  user:signupUserDummy(userNew:$userNew){
+    _id 
+    email
+    firstName
+    lastName
+  }
+}
+
+query veriable
+
+{
+  "userNew": {
+    "firstName": "rohit",
+    "lastName": "sisodiya",
+    "email": "rohit@gmail.com",
+    "password": "govind123"
+  }
+}
+
+
+
+----------------------------------------
+store user in database 
+
+
+mutation createUser($userNew:UserInput!){
+  user:signupUser(userNew:$userNew){
+    _id 
+    email
+    firstName
+    lastName
+  }
+}
+
+
+
+{
+  "userNew": {
+    "firstName": "govind",
+    "lastName": "rajput",
+    "email": "govind@gmail.com",
+    "password": "govind123"
+  }
+}
+
+
+
+--------------------------------------
+sign in user 
+
+mutation singinUser($userlogin:UserSignInInput!){
+   user:singinUser(usersignIn:$userlogin){
+   token
+  }
+}
+
+
+
+{
+  "userlogin": {
+    "email": "govind@gmail.com",
+    "password": "govind123"
+  }
+}
